@@ -1,0 +1,114 @@
+﻿@model BookingViewModel
+@{
+    ViewData["Title"] = "Anasayfa";
+    Layout = null;
+}
+
+<!-- CSS ve JS -->
+<link rel="stylesheet" href="~/css/site.css" />
+<script src="~/js/site.js"></script>
+
+<div class="container">
+    <div class="header">
+        <h1>Araç Rezervasyonu</h1>
+        <p>Geniş araç filosu, uygun fiyatlar</p>
+    </div>
+
+    <div class="form-card">
+        <div class="progress-bar">
+            <div class="progress-fill" id="progressFill"></div>
+        </div>
+
+        <form asp-action="SubmitBooking" method="post">
+            <div class="form-group">
+                <label asp-for="Name">
+                    <span class="label-icon">👤</span>
+                    Ad Soyad
+                </label>
+                <input asp-for="Name" class="form-control" placeholder="Örneğin: Ahmet Yılmaz" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Email">
+                    <span class="label-icon">✉️</span>
+                    E-posta Adresi
+                </label>
+                <input asp-for="Email" class="form-control" placeholder="ornek@eposta.com" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Location">
+                    <span class="label-icon">📍</span>
+                    Teslim Alma Lokasyonu
+                </label>
+                <input asp-for="Location" class="form-control" placeholder="Şehir veya havaalanı kodu" />
+                <span asp-validation-for="Location" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label>
+                    <span class="label-icon">📅</span>
+                    Kiralama Tarihleri
+                </label>
+                <div class="date-row">
+                    <div class="date-wrapper">
+                        <div class="date-label">Başlangıç</div>
+                        <input asp-for="Pickup" type="date" class="form-control" />
+                        <span asp-validation-for="Pickup" class="text-danger"></span>
+                    </div>
+                    <div class="date-wrapper">
+                        <div class="date-label">Bitiş</div>
+                        <input asp-for="Dropoff" type="date" class="form-control" />
+                        <span asp-validation-for="Dropoff" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>
+                    <span class="label-icon">🚗</span>
+                    Araç Tipi
+                </label>
+                <div class="car-types">
+                    <div class="car-type-option">
+                        <input type="radio" asp-for="CarType" value="economy" />
+                        <label class="car-type-label">
+                            <span class="car-icon">🚙</span>
+                            Ekonomik
+                        </label>
+                    </div>
+                    <div class="car-type-option">
+                        <input type="radio" asp-for="CarType" value="suv" />
+                        <label class="car-type-label">
+                            <span class="car-icon">🚐</span>
+                            SUV
+                        </label>
+                    </div>
+                    <div class="car-type-option">
+                        <input type="radio" asp-for="CarType" value="luxury" />
+                        <label class="car-type-label">
+                            <span class="car-icon">🏎️</span>
+                            Lüks
+                        </label>
+                    </div>
+                    <span asp-validation-for="CarType" class="text-danger"></span>
+                </div>
+            </div>
+
+            <button type="submit" class="submit-btn">
+                <span style="position: relative; z-index: 1;">Ödemeye Geç →</span>
+            </button>
+
+            <div class="info-text">
+                <span class="info-icon">🔒</span>
+                <span><strong>Güvenli rezervasyon</strong> • Teslimden 24 saat öncesine kadar ücretsiz iptal</span>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
